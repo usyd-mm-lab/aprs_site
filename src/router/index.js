@@ -7,6 +7,7 @@ import Events from "../components/Events";
 import Membership from "../components/Membership";
 
 const routes = [
+    {path: '/', component: Main},
     {path: '/main', component: Main},
     {path: '/hello', component: HelloWorld},
     {path: '/about', component: About},
