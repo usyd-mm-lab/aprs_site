@@ -20,6 +20,9 @@
           <router-link to="events">
             <div id="navevents" class="nav-link" :class="{active1:navstatus.events}"  @click="onNavClick">Events</div>
           </router-link>
+          <router-link to ="award">
+            <div id="navaward" class="nav-link" :class="{active1:navstatus.award}" @click="onNavClick">Award</div>
+          </router-link>
           <router-link to ="membership">
             <div id="navmembership" class="nav-link" :class="{active1:navstatus.membership}" @click="onNavClick">Membership</div>
           </router-link>
@@ -43,6 +46,7 @@ export default {
         news: false,
         events: false,
         membership:false,
+        award:false
       },
       selectedItem: ""
     }
@@ -60,6 +64,7 @@ export default {
       this.navstatus.main = false;
       this.navstatus.events = false;
       this.navstatus.membership = false;
+      this.navstatus.award = false;
       const click_id = evnts.target.id.substring(3);
       console.log(click_id)
       this.navstatus[click_id] = true
