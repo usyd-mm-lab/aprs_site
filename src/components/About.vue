@@ -5,11 +5,16 @@
   </div>
   <div class="container" style="margin-bottom: 20px;margin-top: 50px;">
     <div class="row">
-      <h2 id="whoarewe">Who are we</h2>
+      <h2 id="fields">Field of Interests</h2>
 
     </div>
     <div>
-      123123123
+      <b-list-group>
+        <b-list-group-item v-for="item in fields" :key="item">
+          {{item}}
+        </b-list-group-item>
+      </b-list-group>
+
     </div>
   </div>
   <div class="container" style="margin-bottom: 20px;">
@@ -160,7 +165,29 @@
 
 <script>
 export default {
-  name: "About"
+  name: "About",
+  data(){
+    return{
+      fields: [
+        'Computer vision',
+        'Statistical pattern recognition',
+        'Structural pattern recognition',
+        'Neural networks',
+        'Image coding and processing',
+        'Shape and texture analysis',
+        'Biomedical pattern analysis',
+        'Remote sensing',
+        'Speech recognition',
+        'Industrial applications',
+        'Document processing',
+        'Multi-media systems',
+        'Natural language analysis',
+        'Robotics',
+        'Special hardware architectures',
+        'Software packages',
+      ]
+    }
+  }
 }
 </script>
 

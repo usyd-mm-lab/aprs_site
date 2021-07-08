@@ -3,15 +3,9 @@
     <div class="title-image">
       <!--    <img src="../assets/confphoto.jpg"/>-->
     </div>
+
     <div>
-      <h1>
-        APRS ECR Award
-      </h1>
-      <table class="table">
-      </table>
-    </div>
-    <div>
-      <h1>DICTA Awards</h1>
+      <h1>APRS DICTA Awards</h1>
       <div class="container">
         <table class="table">
           <thead>
@@ -97,7 +91,7 @@
 
 <script>
 export default {
-  name: "Award.vue"
+  name: "Award_Dicta.vue"
 }
 </script>
 

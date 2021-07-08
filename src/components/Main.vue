@@ -2,6 +2,17 @@
   <div>
     <b-container>
       <b-row>
+        <h1>
+        The Australian Pattern
+        Recognition Society
+
+        </h1>
+
+      </b-row>
+      <b-row>
+       <span>ABN: 75832427113</span>
+      </b-row>
+      <b-row>
         <b-carousel
             id="carousel-1"
             v-model="slide"
@@ -46,6 +57,11 @@
             participants to APRS conferences and workshops at the reduced registration rate. Total membership is now
             about 200.
           </p>
+          <p class="intro">
+            The APRS produces a newsletter approximately quarterly which is distributed with the IAPR world newsletter. Members enjoy discounts at technical meetings sponsored by the APRS. Corporate membership entitles the company to send any number of participants to APRS conferences and workshops at the reduced registration rate. Total membership is now about 200.
+
+
+          </p>
         </b-col>
 
       </b-row>
@@ -58,7 +74,6 @@
         <NewsCard date="2019-09-12" :text="123"></NewsCard>
         <NewsCard date="2019-09-12" :text="123"></NewsCard>
         <NewsCard date="2019-09-12" :text="123"></NewsCard>
-        123
       </b-row>
     </b-container>
   </div>
@@ -98,5 +113,6 @@ p {
 
 p.intro {
   margin-top: 20px;
+  font-size: larger;
 }
 </style>

@@ -5,7 +5,8 @@ import Main from '../components/Main';
 import About from "../components/About";
 import Events from "../components/Events";
 import Membership from "../components/Membership";
-import Award from "../components/Award";
+import Award_Dicta from "../components/Award_Dicta";
+import Award_ECR from "../components/Award_ECR";
 
 const routes = [
     {path: '/', component: Main},
@@ -14,7 +15,8 @@ const routes = [
     {path: '/about', component: About},
     {path: '/events', component: Events},
     {path: '/membership', component: Membership},
-    {path: '/award', component: Award}
+    {path: '/award_dicta', component: Award_Dicta},
+    {path:'/award_ecr', component: Award_ECR}
 
 ]
 const index = new VueRouter({

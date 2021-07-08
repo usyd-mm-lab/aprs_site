@@ -9,26 +9,53 @@
 
     <b-collapse id="nav-collapse" is-nav class="justify-content-end">
       <!-- Right aligned nav items -->
-      <b-navbar-nav >
+      <b-navbar-nav>
         <b-navbar-nav>
-          <router-link to="Main">
-            <div id="navmain" class="nav-link" :class="{active1:navstatus.main}" @click="onNavClick">Home</div>
-          </router-link>
-          <router-link to="About">
-            <div id="navabout" class="nav-link" :class="{active1:navstatus.about}" @click="onNavClick">About</div>
-          </router-link>
-          <router-link to="events">
-            <div id="navevents" class="nav-link" :class="{active1:navstatus.events}"  @click="onNavClick">Events</div>
-          </router-link>
-          <router-link to ="award">
-            <div id="navaward" class="nav-link" :class="{active1:navstatus.award}" @click="onNavClick">Award</div>
-          </router-link>
-          <router-link to ="membership">
-            <div id="navmembership" class="nav-link" :class="{active1:navstatus.membership}" @click="onNavClick">Membership</div>
-          </router-link>
-              <!--          <b-nav-item href="/main" @click="onNavClick" class="active1">Home</b-nav-item>-->
-              <!--          <b-nav-item href="/about">About</b-nav-item>-->
-              <!--          <b-nav-item href="#" disabled>Disabled</b-nav-item>-->
+          <b-nav-item>
+            <router-link to="Main">
+              <div id="navmain" class="nav-link" :class="{active1:navstatus.main}" @click="onNavClick">Home</div>
+            </router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="About">
+              <div id="navabout" class="nav-link" :class="{active1:navstatus.about}" @click="onNavClick">About</div>
+            </router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="events">
+              <div id="navevents" class="nav-link" :class="{active1:navstatus.events}" @click="onNavClick">Events</div>
+            </router-link>
+          </b-nav-item>
+
+          <b-nav-item-dropdown text="Award" class="nav-link" :toggle-class="{active1:navstatus.award}">
+            <b-dropdown-item>
+              <router-link to="Award_ECR">
+                <div id='navawardecr' class="nav-link" @click="onNavClick">APRS ECR Award</div>
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <router-link to="Award_Dicta">
+                <div id='navawarddicta' class="nav-link" @click="onNavClick">
+                  DICTA Award
+                </div>
+
+              </router-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <!--          <router-link to ="award">-->
+          <!--&lt;!&ndash;            <div id="navaward" class="nav-link" :class="{active1:navstatus.award}" @click="onNavClick">Award</div>&ndash;&gt;-->
+
+          <!--          </router-link>-->
+          <b-nav-item>
+            <router-link to="membership">
+              <div id="navmembership" class="nav-link" :class="{active1:navstatus.membership}" @click="onNavClick">
+                Membership
+              </div>
+            </router-link>
+          </b-nav-item>
+          <!--          <b-nav-item href="/main" @click="onNavClick" class="active1">Home</b-nav-item>-->
+          <!--          <b-nav-item href="/about">About</b-nav-item>-->
+          <!--          <b-nav-item href="#" disabled>Disabled</b-nav-item>-->
         </b-navbar-nav>
       </b-navbar-nav>
     </b-collapse>
@@ -45,8 +72,8 @@ export default {
         about: false,
         news: false,
         events: false,
-        membership:false,
-        award:false
+        membership: false,
+        award: false
       },
       selectedItem: ""
     }
@@ -66,8 +93,13 @@ export default {
       this.navstatus.membership = false;
       this.navstatus.award = false;
       const click_id = evnts.target.id.substring(3);
+      console.log(click_id.includes('award'))
       console.log(click_id)
-      this.navstatus[click_id] = true
+      if (click_id.includes('award')) {
+        this.navstatus.award = true
+      } else {
+        this.navstatus[click_id] = true
+      }
 
     }
   }
@@ -78,15 +110,15 @@ export default {
 <style scoped>
 .nav-link {
   color: black !important;
-  font-size: 15pt;
-  padding-top: 15px;
-  padding-down: 15px;
-  padding-left: 30px;
-  padding-right: 300px;
-  border-radius: 10px;
+  /*font-size: 15pt;*/
+  /*padding-top: 15px;*/
+  /*padding-down: 15px;*/
+  /*padding-left: 30px;*/
+  /*padding-right: 300px;*/
+  /*border-radius: 10px;*/
 }
-.router
 
+.router
 .b-navbar {
   background-color: white;
 }
@@ -94,17 +126,22 @@ export default {
 .navbar-toggler-icon {
   color: black;
 }
+
 li a {
   text-decoration: none;
 }
-a { text-decoration: none; }
 
-.active1 {
-  background-color: #428bca;
-  color: white !important;
+a {
+  text-decoration: none;
 }
 
-.navbar{
+.active1 {
+  color: white !important;
+  background-color: #428bca;
+
+}
+
+.navbar {
   padding-left: 10%;
   width: 80vw;
 }
