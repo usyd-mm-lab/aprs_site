@@ -11,51 +11,52 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item>
-            <router-link to="Main">
-              <div id="navmain" class="nav-link" :class="{active1:navstatus.main}" @click="onNavClick">Home</div>
-            </router-link>
-          </b-nav-item>
+
+            <b-nav-item>
+              <router-link to="Main">
+                <div id="navmain" class="nav-link" :class="{active1:navstatus.main}" >
+                  Main
+                </div>
+
+              </router-link>
+            </b-nav-item>
+
           <b-nav-item>
             <router-link to="About">
-              <div id="navabout" class="nav-link" :class="{active1:navstatus.about}" @click="onNavClick">About</div>
+              <div id="navabout" class="nav-link" :class="{active1:navstatus.about}">About</div>
             </router-link>
           </b-nav-item>
           <b-nav-item>
             <router-link to="events">
-              <div id="navevents" class="nav-link" :class="{active1:navstatus.events}" @click="onNavClick">Events</div>
+              <div id="navevents" class="nav-link" :class="{active1:navstatus.events}">Events</div>
             </router-link>
           </b-nav-item>
 
-          <b-nav-item-dropdown text="Award" class="nav-link" :toggle-class="{active1:navstatus.award}">
-            <b-dropdown-item>
-              <router-link to="Award_ECR">
-                <div id='navawardecr' class="nav-link" @click="onNavClick">APRS ECR Award</div>
-              </router-link>
-            </b-dropdown-item>
-            <b-dropdown-item>
-              <router-link to="Award_Dicta">
-                <div id='navawarddicta' class="nav-link" @click="onNavClick">
-                  DICTA Award
-                </div>
+          <b-nav-item>
+            <div  id="navaward" class="nav-link" :class="{active1:navstatus.award}" @onmouseover="onOver">
+              Award
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ref="dropdownmenu">
+                <router-link to="Award_ECR">
+                  <div class="nav-link dropdown-item" >
+                    APRS ECR Award
+                  </div>
+                </router-link>
+         <router-link to="Award_Dicta">
+                  <div class="nav-link dropdown-item">
+                    DICTA Award
+                  </div>
+                </router-link>
+              </div>
+            </div>
 
-              </router-link>
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-          <!--          <router-link to ="award">-->
-          <!--&lt;!&ndash;            <div id="navaward" class="nav-link" :class="{active1:navstatus.award}" @click="onNavClick">Award</div>&ndash;&gt;-->
-
-          <!--          </router-link>-->
+          </b-nav-item>
           <b-nav-item>
             <router-link to="membership">
-              <div id="navmembership" class="nav-link" :class="{active1:navstatus.membership}" @click="onNavClick">
+              <div id="navmembership" class="nav-link" :class="{active1:navstatus.membership}" >
                 Membership
               </div>
             </router-link>
           </b-nav-item>
-          <!--          <b-nav-item href="/main" @click="onNavClick" class="active1">Home</b-nav-item>-->
-          <!--          <b-nav-item href="/about">About</b-nav-item>-->
-          <!--          <b-nav-item href="#" disabled>Disabled</b-nav-item>-->
         </b-navbar-nav>
       </b-navbar-nav>
     </b-collapse>
@@ -78,36 +79,63 @@ export default {
       selectedItem: ""
     }
   },
+  watch:{"$route.path": function (path) {
+      console.log(this.$route)
+      this.selectedItem = path;
+      this.highlightnav(path)
+
+  }},
   mounted() {
     const current_navid = this.$route.path.substring(1).toLowerCase();
     this.navstatus[current_navid] = true;
   },
   methods: {
-    onNavClick: function (evnts) {
-      this.selectedItem = evnts.target;
-      console.log(evnts.target.id);
+    highlightnav(path){
+      let name = path.substring(1).toLowerCase()
+      console.log(name)
       this.navstatus.news = false;
       this.navstatus.about = false;
       this.navstatus.main = false;
       this.navstatus.events = false;
       this.navstatus.membership = false;
       this.navstatus.award = false;
-      const click_id = evnts.target.id.substring(3);
-      console.log(click_id.includes('award'))
-      console.log(click_id)
-      if (click_id.includes('award')) {
+      console.log(path.startsWith('award'))
+      if(name.startsWith('award')){
         this.navstatus.award = true
-      } else {
+        console.log('hh')
+      }
+      else{
+
+        let click_id = name;
         this.navstatus[click_id] = true
       }
 
-    }
+    },
+    onOver() {
+      console.log('over')
+      this.$refs.dropdownmenu.visible = true;
+      document.querySelector('.dropdown-menu').classList.add('show')
+    },
+    onLeave() {
+      console.log('leave')
+      this.$refs.dropdownmenu.visible = false;
+      document.querySelector('.dropdown-menu').classList.remove('show')
+
+    },
+
   }
 }
 
 </script>
 
 <style scoped>
+#navaward:hover>.dropdown-menu{
+  display: block;
+}
+
+.dropdown-toggle{
+  background-color: #42b983;
+}
 .nav-link {
   color: black !important;
   /*font-size: 15pt;*/
@@ -122,6 +150,7 @@ export default {
 .b-navbar {
   background-color: white;
 }
+
 
 .navbar-toggler-icon {
   color: black;

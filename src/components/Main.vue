@@ -9,9 +9,7 @@
         </h1>
 
       </b-row>
-      <b-row>
-       <span>ABN: 75832427113</span>
-      </b-row>
+
       <b-row>
         <b-carousel
             id="carousel-1"
